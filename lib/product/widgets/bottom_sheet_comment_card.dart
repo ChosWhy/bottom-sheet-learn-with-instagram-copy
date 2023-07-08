@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/bottom_sheet_comment_card_model.dart';
+import '../../models/bottom_sheet_comment_card_model.dart';
 import 'circular_avatar.dart';
 
 class BottomSheetCommentCard extends StatefulWidget {

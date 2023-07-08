@@ -12,5 +12,6 @@ class GeneralDatas{
 
   static Color appbarFavoriteColor = Colors.white;
   static int commentCount = 1;
-
+  static double kZero = 0;
+  static String randomImageGenerator = "https://picsum.photos/200";
 }

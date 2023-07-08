@@ -1,16 +1,21 @@
+import 'package:bottomsheetexample/const/project_colors.dart';
 import 'package:bottomsheetexample/core/custom_divider.dart';
+import 'package:bottomsheetexample/extension/size_extension.dart';
 import 'package:flutter/material.dart';
 
 mixin MainBottomSheet {
   Future<T?> showCustomMainBottomSheet<T>(
       {required BuildContext context, Widget? child}) async {
+    const Color darkToneInk = Color(0xff121212);
+    const BorderRadius generalModalBottomSheetBorderRadius =
+        BorderRadius.vertical(top: Radius.circular(12));
     return showModalBottomSheet(
       useSafeArea: true,
       isScrollControlled: true,
-      backgroundColor: const Color(0xff121212),
+      backgroundColor: darkToneInk,
       context: context,
       shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(12))),
+          borderRadius: generalModalBottomSheetBorderRadius),
       builder: (context) {
         return _CustomMainBottomSheet(
           child: child,
@@ -30,7 +35,7 @@ class _CustomMainBottomSheet extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const _BaseSheetHeaderComponent(),
+        _BaseSheetHeaderComponent(),
         Expanded(
           child: child ?? const SizedBox.shrink(),
         )
@@ -39,38 +44,40 @@ class _CustomMainBottomSheet extends StatelessWidget {
   }
 }
 
-class _BaseSheetHeaderComponent extends StatelessWidget {
-  const _BaseSheetHeaderComponent();
+class _BaseSheetHeaderComponent extends StatelessWidget
+    with _BaseSheetHeaderComponentUtility {
+  _BaseSheetHeaderComponent();
+
+  final ProjectColors _projectColors = ProjectColors();
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 40,
+      height: generalSize,
       child: Row(
         children: [
           InkWell(
-            borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(generalSize / 2),
               child: Container(
-                width: 40,
-                height: 40,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20)
-                ),
-                  child: const Icon(
-                Icons.arrow_back,
-                    color: Colors.white,
-              )),
+                  width: generalSize,
+                  height: generalSize,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(generalSize / 2)),
+                  child: Icon(
+                    iconArrowBack,
+                    color: _projectColors.white,
+                  )),
               onTap: () {
                 Navigator.of(context).pop<bool>(true);
               }),
           Expanded(
             child: CustomDivider(
-              dividerHeight: 5,
-              indent: MediaQuery.of(context).size.width * 0.35,
-              endIndent: MediaQuery.of(context).size.width * 0.45,
+              dividerHeight: dividerDefaultHeight,
+              indent: context.getWidthWithContext(context) * 0.35,
+              endIndent: context.getWidthWithContext(context) * 0.45,
               decoration: BoxDecoration(
-                color: Colors.grey,
-                borderRadius: BorderRadius.circular(5 / 2),
+                color: _projectColors.grey,
+                borderRadius: BorderRadius.circular(dividerDefaultHeight / 2),
               ),
             ),
           ),
@@ -78,4 +85,10 @@ class _BaseSheetHeaderComponent extends StatelessWidget {
       ),
     );
   }
+}
+
+mixin _BaseSheetHeaderComponentUtility {
+  final double generalSize = 40;
+  final IconData iconArrowBack = Icons.arrow_back;
+  final double dividerDefaultHeight = 5;
 }

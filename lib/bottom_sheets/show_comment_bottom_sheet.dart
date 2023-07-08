@@ -1,9 +1,9 @@
 import 'package:bottomsheetexample/general_datas.dart';
 import 'package:bottomsheetexample/models/bottom_sheet_comment_card_model.dart';
-import 'package:bottomsheetexample/widgets/circular_avatar.dart';
+import 'package:bottomsheetexample/product/widgets/circular_avatar.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/bottom_sheet_comment_card.dart';
+import '../product/widgets/bottom_sheet_comment_card.dart';
 
 class CommentBottomSheet extends StatefulWidget {
   const CommentBottomSheet({Key? key, required this.commentCount}) : super(key: key);

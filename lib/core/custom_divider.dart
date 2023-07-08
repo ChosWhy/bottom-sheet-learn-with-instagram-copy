@@ -10,13 +10,15 @@ class CustomDivider extends StatelessWidget {
   final double? dividerHeight;
   final BoxDecoration? decoration;
 
+  final double defaultIndentValue = 8;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       height: dividerHeight ?? 1,
       decoration: decoration ?? const BoxDecoration(),
-      margin: EdgeInsets.only(right: endIndent ?? 8 ,left: indent ?? 8),
+      margin: EdgeInsets.only(right: endIndent ?? defaultIndentValue ,left: indent ?? defaultIndentValue),
     );
   }
 }

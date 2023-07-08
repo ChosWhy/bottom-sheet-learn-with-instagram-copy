@@ -1,4 +1,5 @@
-import 'package:bottomsheetexample/main_page.dart';
+import 'package:bottomsheetexample/main_page/main_page.dart';
+import 'package:bottomsheetexample/theme/theme_dark.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,9 +11,10 @@ class Main extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: DarkTheme().theme,
       debugShowCheckedModeBanner: false,
-      home: MainPage(),
+      home: const MainPage(),
     );
   }
 }
