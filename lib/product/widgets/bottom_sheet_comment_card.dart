@@ -1,10 +1,15 @@
+import 'package:bottomsheetexample/const/project_colors.dart';
+import 'package:bottomsheetexample/const/project_icons.dart';
+import 'package:bottomsheetexample/const/project_padding.dart';
+import 'package:bottomsheetexample/extension/text_theme.dart';
 import 'package:flutter/material.dart';
-
 import '../../models/bottom_sheet_comment_card_model.dart';
 import 'circular_avatar.dart';
 
 class BottomSheetCommentCard extends StatefulWidget {
-  const BottomSheetCommentCard({super.key, required this.index, required this.model});
+  const BottomSheetCommentCard(
+      {super.key, required this.index, required this.model});
+
   final int index;
   final BottomSheetCommentCardModel model;
 
@@ -12,18 +17,18 @@ class BottomSheetCommentCard extends StatefulWidget {
   State<BottomSheetCommentCard> createState() => _BottomSheetCommentCardState();
 }
 
-class _BottomSheetCommentCardState extends State<BottomSheetCommentCard> {
-  late final BottomSheetCommentCardModel _model;
-
+class _BottomSheetCommentCardState extends State<BottomSheetCommentCard>
+    with _BottomSheetCommentCardUtility {
   @override
   void initState() {
     super.initState();
     _model = widget.model;
   }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 10.0, left: 18, right: 12),
+      padding: customGeneralPadding,
       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
         CustomCircularAvatar(image: _model.imageUrl),
         const SizedBox(
@@ -42,45 +47,43 @@ class _BottomSheetCommentCardState extends State<BottomSheetCommentCard> {
         children: [
           Row(
             children: [
-              Text(
-                _model.name,
-                style: Theme.of(context)
-                    .textTheme
-                    .titleSmall
-                    ?.copyWith(color: Colors.white),
-              ),
+              Text(_model.name,
+                  style: context.getTextThemeWithContext(context).titleSmall),
               Text(
                 _model.time,
-                style: Theme.of(context)
-                    .textTheme
+                style: context
+                    .getTextThemeWithContext(context)
                     .titleSmall
-                    ?.copyWith(color: Colors.grey),
+                    ?.copyWith(color: _projectColors.grey),
               )
             ],
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 5.0),
+            padding: ProjectPaddings.smallTopPadding,
             child: Text(
               _model.comment,
-              style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  color: Colors.white, overflow: TextOverflow.ellipsis),
+              style: context
+                  .getTextThemeWithContext(context)
+                  .titleSmall
+                  ?.copyWith(
+                      color: _projectColors.grey,
+                      overflow: TextOverflow.ellipsis),
               maxLines: 100,
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 5.0),
+            padding: ProjectPaddings.smallTopPadding,
             child: InkWell(
               onTap: () {},
               child: Text(
-                "Yanıtla",
-                style: Theme.of(context)
-                    .textTheme
+                yanitla,
+                style: context
+                    .getTextThemeWithContext(context)
                     .titleSmall
-                    ?.copyWith(color: Colors.grey),
+                    ?.copyWith(color: _projectColors.grey),
               ),
             ),
           ),
-
           //Alt alta yorumlar!
         ],
       ),
@@ -91,25 +94,35 @@ class _BottomSheetCommentCardState extends State<BottomSheetCommentCard> {
     return Column(
       children: [
         InkWell(
-          borderRadius: BorderRadius.circular(25),
+          borderRadius: xLargeBorderRadius,
           onTap: () {},
-          child: const SizedBox(
-            width: 45,
-            height: 45,
+          child: SizedBox(
+            width: commentCardIconSize,
+            height: commentCardIconSize,
             child: Icon(
-              Icons.favorite_border_rounded,
-              color: Colors.grey,
+              ProjectIconDatas.getIconPaths(iconPaths: IconPaths.favorite_border_rounded),
+              color: _projectColors.grey,
             ),
           ),
         ),
         Text(
           _model.likeCount == null ? "" : _model.likeCount.toString(),
-          style: Theme.of(context)
-              .textTheme
+          style: context
+              .getTextThemeWithContext(context)
               .titleSmall
-              ?.copyWith(color: Colors.grey),
+              ?.copyWith(color: _projectColors.grey),
         ),
       ],
     );
   }
+}
+
+mixin _BottomSheetCommentCardUtility {
+  final ProjectColors _projectColors = ProjectColors();
+  final EdgeInsets customGeneralPadding =
+      const EdgeInsets.only(top: 10.0, left: 18, right: 12);
+  final String yanitla = "Yanıtla";
+  final BorderRadius xLargeBorderRadius = BorderRadius.circular(25);
+  final double commentCardIconSize = 45;
+  late final BottomSheetCommentCardModel _model;
 }

@@ -7,4 +7,6 @@ class ProjectColors{
   final Color blue = Colors.blue;
   final Color black = Colors.black;
   final Color grey = Colors.grey;
+  final januaryBlue = const Color(0xff00A0B8);
+
 }

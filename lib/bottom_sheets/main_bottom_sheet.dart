@@ -1,4 +1,5 @@
 import 'package:bottomsheetexample/const/project_colors.dart';
+import 'package:bottomsheetexample/const/project_icons.dart';
 import 'package:bottomsheetexample/core/custom_divider.dart';
 import 'package:bottomsheetexample/extension/size_extension.dart';
 import 'package:flutter/material.dart';
@@ -64,7 +65,7 @@ class _BaseSheetHeaderComponent extends StatelessWidget
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(generalSize / 2)),
                   child: Icon(
-                    iconArrowBack,
+                    ProjectIconDatas.getIconPaths(iconPaths: IconPaths.arrow_back),
                     color: _projectColors.white,
                   )),
               onTap: () {
@@ -89,6 +90,5 @@ class _BaseSheetHeaderComponent extends StatelessWidget
 
 mixin _BaseSheetHeaderComponentUtility {
   final double generalSize = 40;
-  final IconData iconArrowBack = Icons.arrow_back;
   final double dividerDefaultHeight = 5;
 }

@@ -82,7 +82,7 @@ class _VideoBodyAndInformationState extends State<_VideoBodyAndInformation>
             IconButton(
                 onPressed: () {},
                 icon: Icon(
-                  iconFavoriteOutlined,
+                  ProjectIconDatas.getIconPaths(iconPaths: IconPaths.favorite_border_rounded),
                   color: _projectColors.white,
                 )),
             IconButton(
@@ -90,13 +90,13 @@ class _VideoBodyAndInformationState extends State<_VideoBodyAndInformation>
                   _customBottomSheetIconMethod(context);
                 },
                 icon: Icon(
-                  iconFontAwesomeComment,
+                  ProjectIconDatas.getIconPaths(iconPaths: IconPaths.comment),
                   color: _projectColors.white,
                 )),
             IconButton(
                 onPressed: () {},
                 icon: Icon(
-                  iconSendOutlined,
+                  ProjectIconDatas.getIconPaths(iconPaths: IconPaths.send_outlined),
                   color: _projectColors.white,
                 )),
           ],
@@ -104,7 +104,7 @@ class _VideoBodyAndInformationState extends State<_VideoBodyAndInformation>
         IconButton(
             onPressed: () {},
             icon: Icon(
-              iconSaveOutlined,
+              ProjectIconDatas.getIconPaths(iconPaths: IconPaths.save_outlined),
               color: _projectColors.white,
             ))
       ],
@@ -199,7 +199,7 @@ class _VideoComponentState extends VideoComponentStateManage
               height: avatarSize,
               decoration: BoxDecoration(borderRadius: avatarBorderRadius),
               child: Icon(
-                iconTopMore,
+                ProjectIconDatas.getIconPaths(iconPaths: IconPaths.more_vert_outlined),
                 size: topIconSize,
                 color: projectColors.white,
               )),
@@ -213,7 +213,6 @@ mixin _VideoComponentUtility {
   final BorderRadius avatarBorderRadius = BorderRadius.circular(20);
   final avatarName = "bgyeter";
   final double topIconSize = 25;
-  final IconData iconTopMore = Icons.more_vert_outlined;
 }
 
 mixin _VideoBodyUtility {
@@ -221,8 +220,4 @@ mixin _VideoBodyUtility {
   final String titleTextPlaceFavoriteCount = "4.719 beğenme";
   final String titleTextPlaceOwner = "bgyeter";
   final String titleTextPlaceTime = "20 saat önce";
-  final IconData iconFavoriteOutlined = Icons.favorite_border_rounded;
-  final IconData iconFontAwesomeComment = FontAwesomeIcons.comment;
-  final IconData iconSendOutlined = Icons.send_outlined;
-  final IconData iconSaveOutlined = Icons.save_outlined;
 }

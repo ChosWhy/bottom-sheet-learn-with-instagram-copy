@@ -8,10 +8,10 @@ ve sunu da implemente ediyorsun : implements PreferredSizeWidget
  */
 class _MainPageAppBar extends StatelessWidget implements PreferredSizeWidget{
   final Color appbarFavoriteColor;
-  final _MainPageUtility _mainPageUtility = _MainPageUtility();
   _MainPageAppBar({required this.appbarFavoriteColor});
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  final String titleInstagram = "Instagram";
 
   @override
   Widget build(BuildContext context) {
@@ -24,20 +24,20 @@ class _MainPageAppBar extends StatelessWidget implements PreferredSizeWidget{
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              _mainPageUtility.titleInstagram,
+              titleInstagram,
               style: context.getTextThemeWithContext(context).titleLarge,
             ),
             Icon(
-              _mainPageUtility.iconArrowDown,
+              ProjectIconDatas.getIconPaths(iconPaths: IconPaths.keyboard_arrow_down_outlined),
             )
           ],
         ),
       ),
       actions: [
-        IconButton(onPressed: () {}, icon: Icon(_mainPageUtility.iconFavorite,color: appbarFavoriteColor,)),
+        IconButton(onPressed: () {}, icon: Icon(ProjectIconDatas.getIconPaths(iconPaths: IconPaths.favorite),color: appbarFavoriteColor,)),
         IconButton(
             onPressed: () {},
-            icon: Icon(_mainPageUtility.fontAwesomeFacebookMessenger))
+            icon: Icon(ProjectIconDatas.getIconPaths(iconPaths: IconPaths.facebookMessenger)))
       ],
     );
   }
